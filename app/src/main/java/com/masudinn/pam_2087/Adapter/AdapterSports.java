@@ -15,14 +15,19 @@ import com.masudinn.pam_2087.R;
 import com.masudinn.pam_2087.Ui.DetailMainActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterSports extends RecyclerView.Adapter<AdapterSports.ViewHolder> {
 
-    private List<DataAllSport> dataAllSportList;
+    private List<DataAllSport> dataAllSportList = new ArrayList<>();
     private Context mContext;
     DataAllSport dataAllSport;
     private View mView;
+
+    public void setDataAllSportList(List<DataAllSport> dataAllSportList) {
+        this.dataAllSportList = dataAllSportList;
+    }
 
     public AdapterSports(List<DataAllSport> dataAllSportList) {
         this.dataAllSportList = dataAllSportList;

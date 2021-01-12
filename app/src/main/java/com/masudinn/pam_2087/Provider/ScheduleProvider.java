@@ -37,7 +37,7 @@ public class ScheduleProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         scheduleHelper = new ScheduleHelper(getContext());
-        scheduleHelper.open();
+//        scheduleHelper.open();
         return false;
     }
 

@@ -1,31 +1,27 @@
-package com.masudinn.pam_2087.Model.AllSport;
+package com.masudinn.pam_2087.local.room.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-import java.util.List;
+@Entity
+public class SportEntity {
 
-public class DataAllSport {
-    @SerializedName("idSport")
-    @Expose
+    @PrimaryKey
+    @NonNull
     private String idSport;
-    @SerializedName("strSport")
-    @Expose
+
     private String strSport;
-    @SerializedName("strFormat")
-    @Expose
+
     private String strFormat;
-    @SerializedName("strSportThumb")
-    @Expose
+
     private String strSportThumb;
-    @SerializedName("strSportThumbGreen")
-    @Expose
+
     private String strSportThumbGreen;
-    @SerializedName("strSportDescription")
-    @Expose
+
     private String strSportDescription;
 
-    public DataAllSport(String idSport, String strSport, String strFormat, String strSportThumb, String strSportThumbGreen, String strSportDescription) {
+    public SportEntity(@NonNull String idSport, String strSport, String strFormat, String strSportThumb, String strSportThumbGreen, String strSportDescription) {
         this.idSport = idSport;
         this.strSport = strSport;
         this.strFormat = strFormat;
@@ -34,6 +30,7 @@ public class DataAllSport {
         this.strSportDescription = strSportDescription;
     }
 
+    @NonNull
     public String getIdSport() {
         return idSport;
     }

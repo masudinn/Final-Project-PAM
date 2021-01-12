@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +51,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new FavoriteFragment();
                 DataFavorite dataFavorite;
                 Cursor cursor = null;
-                ArrayList<DataFavorite> scheduleFavoriteArrayList = new ArrayList<>();
-                do{
-                    dataFavorite = new DataFavorite(cursor.getString(cursor.getColumnIndexOrThrow(
-                            ScheduleContract.ScheduleColumns.Schedule_ID)));
-                    scheduleFavoriteArrayList.add(dataFavorite);
-                    cursor.moveToNext();
-                } while (!cursor.isAfterLast());
+//                ArrayList<DataFavorite> scheduleFavoriteArrayList = new ArrayList<>();
+//                try {
+//                    do {
+//                        dataFavorite = new DataFavorite(cursor.getString(cursor.getColumnIndexOrThrow(
+//                                ScheduleContract.ScheduleColumns.Schedule_ID)));
+//                        scheduleFavoriteArrayList.add(dataFavorite);
+//                        cursor.moveToNext();
+//                    } while (!cursor.isAfterLast());
+//                }catch (Exception e){
+//                    Log.d(TAG, "onNavigationItemSelected: " + e);
+//                }
                 break;
         }
         return loadFragment(fragment);

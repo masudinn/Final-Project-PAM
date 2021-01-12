@@ -34,6 +34,9 @@ import com.masudinn.pam_2087.Db.ScheduleContract;
 import com.masudinn.pam_2087.Model.AllSport.DataAllSport;
 import com.masudinn.pam_2087.Model.AllTeam.DataTeamsItem;
 import com.masudinn.pam_2087.R;
+import com.masudinn.pam_2087.local.room.AppDatabase;
+import com.masudinn.pam_2087.local.room.dao.FavoriteDao;
+import com.masudinn.pam_2087.local.room.models.DataFavoriteEntity;
 import com.squareup.picasso.Picasso;
 
 public class DetailAllTeamActivity extends AppCompatActivity {
@@ -42,19 +45,24 @@ public class DetailAllTeamActivity extends AppCompatActivity {
     private boolean isFavorite;
     String id, title, image, desc, category;
     private Context context;
-    private TextView tvTeam, tvCountry, tvLeague,tvWeb,tvDesTeam;
+    private TextView tvTeam, tvCountry, tvLeague, tvWeb, tvDesTeam;
     private ImageView imgView;
-    private Button btn1,btn2;
+    private Button btn1, btn2;
     private DataTeamsItem dataTeamsItem;
     private Toolbar toolbar;
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "channel_01";
     private static final CharSequence CHANNEL_NAME = "mychannel";
+    private AppDatabase roomDatabase;
+    private FavoriteDao favoriteDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_all_team);
+
+        roomDatabase = AppDatabase.newInstance(getApplicationContext());
+        favoriteDao = roomDatabase.getFavoriteDao();
         Gson gson = new Gson();
         dataTeamsItem = gson.fromJson(getIntent().getStringExtra("allteam"), DataTeamsItem.class);
 
@@ -166,7 +174,8 @@ public class DetailAllTeamActivity extends AppCompatActivity {
             Snackbar.make(view, "This movie has been remove from your favorite", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
-        saveInFavorite();
+//        saveInFavorite();
+        saveToFavoriteRoom();
     }
 
     private void saveInFavorite() {
@@ -183,5 +192,17 @@ public class DetailAllTeamActivity extends AppCompatActivity {
             Uri uri = ScheduleContract.CONTENT_URI.buildUpon().appendPath(id).build();
             getContentResolver().delete(uri, null, null);
         }
+    }
+
+    private void saveToFavoriteRoom() {
+        Log.e(TAG, "onClick: Data Teams = " + dataTeamsItem.toString());
+        DataFavoriteEntity favorite = new DataFavoriteEntity(
+                dataTeamsItem.getIdTeam(),
+                dataTeamsItem.getStrSport(),
+                dataTeamsItem.getStrTeamBadge(),
+                dataTeamsItem.getStrDescriptionEN(),
+                dataTeamsItem.getStrTeamShort()
+        );
+        favoriteDao.insertFavorite(favorite);
     }
 }

@@ -1,30 +1,23 @@
-package com.masudinn.pam_2087.Model.AllTeam;
+package com.masudinn.pam_2087.local.room.models;
 
-import android.database.Cursor;
-import android.os.Parcel;
-import android.os.Parcelable;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.masudinn.pam_2087.Db.ScheduleContract;
 
-import static com.masudinn.pam_2087.Db.ScheduleContract.ScheduleColumns.Schedule_ID;
-import static com.masudinn.pam_2087.Db.ScheduleContract.ScheduleColumns.Schedule_IMAGE;
-import static com.masudinn.pam_2087.Db.ScheduleContract.ScheduleColumns.Schedule_TITLE;
+@Entity
+public class TeamsEntity {
 
-public class DataTeamsItem implements Parcelable {
+	@PrimaryKey
+	@NonNull
+	private String idTeam = "";
 
-	@SerializedName("idTeam")
-	@Expose
-	private String idTeam;
-	@SerializedName("idSoccerXML")
-	@Expose
 	private String idSoccerXML;
-	@SerializedName("idAPIfootball")
-	@Expose
+
 	private String idAPIfootball;
-	@SerializedName("intLoved")
-	@Expose
+
 	private String intLoved;
 	@SerializedName("strTeam")
 	@Expose
@@ -76,16 +69,16 @@ public class DataTeamsItem implements Parcelable {
 	private String strLeague6;
 	@SerializedName("idLeague6")
 	@Expose
-	private Object idLeague6;
+	private String idLeague6;
 	@SerializedName("strLeague7")
 	@Expose
 	private String strLeague7;
 	@SerializedName("idLeague7")
 	@Expose
-	private Object idLeague7;
+	private String idLeague7;
 	@SerializedName("strDivision")
 	@Expose
-	private Object strDivision;
+	private String strDivision;
 	@SerializedName("strManager")
 	@Expose
 	private String strManager;
@@ -133,7 +126,7 @@ public class DataTeamsItem implements Parcelable {
 	private String strDescriptionFR;
 	@SerializedName("strDescriptionCN")
 	@Expose
-	private Object strDescriptionCN;
+	private String strDescriptionCN;
 	@SerializedName("strDescriptionIT")
 	@Expose
 	private String strDescriptionIT;
@@ -151,22 +144,22 @@ public class DataTeamsItem implements Parcelable {
 	private String strDescriptionPT;
 	@SerializedName("strDescriptionSE")
 	@Expose
-	private Object strDescriptionSE;
+	private String strDescriptionSE;
 	@SerializedName("strDescriptionNL")
 	@Expose
-	private Object strDescriptionNL;
+	private String strDescriptionNL;
 	@SerializedName("strDescriptionHU")
 	@Expose
-	private Object strDescriptionHU;
+	private String strDescriptionHU;
 	@SerializedName("strDescriptionNO")
 	@Expose
 	private String strDescriptionNO;
 	@SerializedName("strDescriptionIL")
 	@Expose
-	private Object strDescriptionIL;
+	private String strDescriptionIL;
 	@SerializedName("strDescriptionPL")
 	@Expose
-	private Object strDescriptionPL;
+	private String strDescriptionPL;
 	@SerializedName("strGender")
 	@Expose
 	private String strGender;
@@ -204,83 +197,70 @@ public class DataTeamsItem implements Parcelable {
 	@Expose
 	private String strLocked;
 
-	protected DataTeamsItem(Parcel in) {
-		idTeam = in.readString();
-		idSoccerXML = in.readString();
-		idAPIfootball = in.readString();
-		intLoved = in.readString();
-		strTeam = in.readString();
-		strTeamShort = in.readString();
-		strAlternate = in.readString();
-		intFormedYear = in.readString();
-		strSport = in.readString();
-		strLeague = in.readString();
-		idLeague = in.readString();
-		strLeague2 = in.readString();
-		idLeague2 = in.readString();
-		strLeague3 = in.readString();
-		idLeague3 = in.readString();
-		strLeague4 = in.readString();
-		idLeague4 = in.readString();
-		strLeague5 = in.readString();
-		idLeague5 = in.readString();
-		strLeague6 = in.readString();
-		strLeague7 = in.readString();
-		strManager = in.readString();
-		strStadium = in.readString();
-		strKeywords = in.readString();
-		strRSS = in.readString();
-		strStadiumThumb = in.readString();
-		strStadiumDescription = in.readString();
-		strStadiumLocation = in.readString();
-		intStadiumCapacity = in.readString();
-		strWebsite = in.readString();
-		strFacebook = in.readString();
-		strTwitter = in.readString();
-		strInstagram = in.readString();
-		strDescriptionEN = in.readString();
-		strDescriptionDE = in.readString();
-		strDescriptionFR = in.readString();
-		strDescriptionIT = in.readString();
-		strDescriptionJP = in.readString();
-		strDescriptionRU = in.readString();
-		strDescriptionES = in.readString();
-		strDescriptionPT = in.readString();
-		strDescriptionNO = in.readString();
-		strGender = in.readString();
-		strCountry = in.readString();
-		strTeamBadge = in.readString();
-		strTeamJersey = in.readString();
-		strTeamLogo = in.readString();
-		strTeamFanart1 = in.readString();
-		strTeamFanart2 = in.readString();
-		strTeamFanart3 = in.readString();
-		strTeamFanart4 = in.readString();
-		strTeamBanner = in.readString();
-		strYoutube = in.readString();
-		strLocked = in.readString();
-	}
-
-	public static final Creator<DataTeamsItem> CREATOR = new Creator<DataTeamsItem>() {
-		@Override
-		public DataTeamsItem createFromParcel(Parcel in) {
-			return new DataTeamsItem(in);
-		}
-
-		@Override
-		public DataTeamsItem[] newArray(int size) {
-			return new DataTeamsItem[size];
-		}
-	};
-
-	public DataTeamsItem(){
-
-	}
-
-	public DataTeamsItem(Cursor cursor){
-		this.idTeam = ScheduleContract.getColumnString(cursor,Schedule_ID);
-		this.strTeam = ScheduleContract.getColumnString(cursor,Schedule_TITLE);
-		this.strTeamBadge = ScheduleContract.getColumnString(cursor,Schedule_IMAGE);
+	public TeamsEntity(@NonNull String idTeam, String idSoccerXML, String idAPIfootball, String intLoved, String strTeam, String strTeamShort, String strAlternate, String intFormedYear, String strSport, String strLeague, String idLeague, String strLeague2, String idLeague2, String strLeague3, String idLeague3, String strLeague4, String idLeague4, String strLeague5, String idLeague5, String strLeague6, String idLeague6, String strLeague7, String idLeague7, String strDivision, String strManager, String strStadium, String strKeywords, String strRSS, String strStadiumThumb, String strStadiumDescription, String strStadiumLocation, String intStadiumCapacity, String strWebsite, String strFacebook, String strTwitter, String strInstagram, String strDescriptionEN, String strDescriptionDE, String strDescriptionFR, String strDescriptionCN, String strDescriptionIT, String strDescriptionJP, String strDescriptionRU, String strDescriptionES, String strDescriptionPT, String strDescriptionSE, String strDescriptionNL, String strDescriptionHU, String strDescriptionNO, String strDescriptionIL, String strDescriptionPL, String strGender, String strCountry, String strTeamBadge, String strTeamJersey, String strTeamLogo, String strTeamFanart1, String strTeamFanart2, String strTeamFanart3, String strTeamFanart4, String strTeamBanner, String strYoutube, String strLocked) {
+		this.idTeam = idTeam;
+		this.idSoccerXML = idSoccerXML;
+		this.idAPIfootball = idAPIfootball;
+		this.intLoved = intLoved;
+		this.strTeam = strTeam;
+		this.strTeamShort = strTeamShort;
+		this.strAlternate = strAlternate;
+		this.intFormedYear = intFormedYear;
+		this.strSport = strSport;
+		this.strLeague = strLeague;
+		this.idLeague = idLeague;
+		this.strLeague2 = strLeague2;
+		this.idLeague2 = idLeague2;
+		this.strLeague3 = strLeague3;
+		this.idLeague3 = idLeague3;
+		this.strLeague4 = strLeague4;
+		this.idLeague4 = idLeague4;
+		this.strLeague5 = strLeague5;
+		this.idLeague5 = idLeague5;
+		this.strLeague6 = strLeague6;
+		this.idLeague6 = idLeague6;
+		this.strLeague7 = strLeague7;
+		this.idLeague7 = idLeague7;
+		this.strDivision = strDivision;
+		this.strManager = strManager;
+		this.strStadium = strStadium;
+		this.strKeywords = strKeywords;
+		this.strRSS = strRSS;
+		this.strStadiumThumb = strStadiumThumb;
+		this.strStadiumDescription = strStadiumDescription;
+		this.strStadiumLocation = strStadiumLocation;
+		this.intStadiumCapacity = intStadiumCapacity;
+		this.strWebsite = strWebsite;
+		this.strFacebook = strFacebook;
+		this.strTwitter = strTwitter;
+		this.strInstagram = strInstagram;
+		this.strDescriptionEN = strDescriptionEN;
+		this.strDescriptionDE = strDescriptionDE;
+		this.strDescriptionFR = strDescriptionFR;
+		this.strDescriptionCN = strDescriptionCN;
+		this.strDescriptionIT = strDescriptionIT;
+		this.strDescriptionJP = strDescriptionJP;
+		this.strDescriptionRU = strDescriptionRU;
+		this.strDescriptionES = strDescriptionES;
+		this.strDescriptionPT = strDescriptionPT;
+		this.strDescriptionSE = strDescriptionSE;
+		this.strDescriptionNL = strDescriptionNL;
+		this.strDescriptionHU = strDescriptionHU;
+		this.strDescriptionNO = strDescriptionNO;
+		this.strDescriptionIL = strDescriptionIL;
+		this.strDescriptionPL = strDescriptionPL;
+		this.strGender = strGender;
+		this.strCountry = strCountry;
+		this.strTeamBadge = strTeamBadge;
+		this.strTeamJersey = strTeamJersey;
+		this.strTeamLogo = strTeamLogo;
+		this.strTeamFanart1 = strTeamFanart1;
+		this.strTeamFanart2 = strTeamFanart2;
+		this.strTeamFanart3 = strTeamFanart3;
+		this.strTeamFanart4 = strTeamFanart4;
+		this.strTeamBanner = strTeamBanner;
+		this.strYoutube = strYoutube;
+		this.strLocked = strLocked;
 	}
 
 	public String getIdTeam() {
@@ -443,11 +423,11 @@ public class DataTeamsItem implements Parcelable {
 		this.strLeague6 = strLeague6;
 	}
 
-	public Object getIdLeague6() {
+	public String getIdLeague6() {
 		return idLeague6;
 	}
 
-	public void setIdLeague6(Object idLeague6) {
+	public void setIdLeague6(String idLeague6) {
 		this.idLeague6 = idLeague6;
 	}
 
@@ -459,19 +439,19 @@ public class DataTeamsItem implements Parcelable {
 		this.strLeague7 = strLeague7;
 	}
 
-	public Object getIdLeague7() {
+	public String getIdLeague7() {
 		return idLeague7;
 	}
 
-	public void setIdLeague7(Object idLeague7) {
+	public void setIdLeague7(String idLeague7) {
 		this.idLeague7 = idLeague7;
 	}
 
-	public Object getStrDivision() {
+	public String getStrDivision() {
 		return strDivision;
 	}
 
-	public void setStrDivision(Object strDivision) {
+	public void setStrDivision(String strDivision) {
 		this.strDivision = strDivision;
 	}
 
@@ -595,11 +575,11 @@ public class DataTeamsItem implements Parcelable {
 		this.strDescriptionFR = strDescriptionFR;
 	}
 
-	public Object getStrDescriptionCN() {
+	public String getStrDescriptionCN() {
 		return strDescriptionCN;
 	}
 
-	public void setStrDescriptionCN(Object strDescriptionCN) {
+	public void setStrDescriptionCN(String strDescriptionCN) {
 		this.strDescriptionCN = strDescriptionCN;
 	}
 
@@ -643,27 +623,27 @@ public class DataTeamsItem implements Parcelable {
 		this.strDescriptionPT = strDescriptionPT;
 	}
 
-	public Object getStrDescriptionSE() {
+	public String getStrDescriptionSE() {
 		return strDescriptionSE;
 	}
 
-	public void setStrDescriptionSE(Object strDescriptionSE) {
+	public void setStrDescriptionSE(String strDescriptionSE) {
 		this.strDescriptionSE = strDescriptionSE;
 	}
 
-	public Object getStrDescriptionNL() {
+	public String getStrDescriptionNL() {
 		return strDescriptionNL;
 	}
 
-	public void setStrDescriptionNL(Object strDescriptionNL) {
+	public void setStrDescriptionNL(String strDescriptionNL) {
 		this.strDescriptionNL = strDescriptionNL;
 	}
 
-	public Object getStrDescriptionHU() {
+	public String getStrDescriptionHU() {
 		return strDescriptionHU;
 	}
 
-	public void setStrDescriptionHU(Object strDescriptionHU) {
+	public void setStrDescriptionHU(String strDescriptionHU) {
 		this.strDescriptionHU = strDescriptionHU;
 	}
 
@@ -675,19 +655,19 @@ public class DataTeamsItem implements Parcelable {
 		this.strDescriptionNO = strDescriptionNO;
 	}
 
-	public Object getStrDescriptionIL() {
+	public String getStrDescriptionIL() {
 		return strDescriptionIL;
 	}
 
-	public void setStrDescriptionIL(Object strDescriptionIL) {
+	public void setStrDescriptionIL(String strDescriptionIL) {
 		this.strDescriptionIL = strDescriptionIL;
 	}
 
-	public Object getStrDescriptionPL() {
+	public String getStrDescriptionPL() {
 		return strDescriptionPL;
 	}
 
-	public void setStrDescriptionPL(Object strDescriptionPL) {
+	public void setStrDescriptionPL(String strDescriptionPL) {
 		this.strDescriptionPL = strDescriptionPL;
 	}
 
@@ -785,137 +765,5 @@ public class DataTeamsItem implements Parcelable {
 
 	public void setStrLocked(String strLocked) {
 		this.strLocked = strLocked;
-	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(idTeam);
-		dest.writeString(idSoccerXML);
-		dest.writeString(idAPIfootball);
-		dest.writeString(intLoved);
-		dest.writeString(strTeam);
-		dest.writeString(strTeamShort);
-		dest.writeString(strAlternate);
-		dest.writeString(intFormedYear);
-		dest.writeString(strSport);
-		dest.writeString(strLeague);
-		dest.writeString(idLeague);
-		dest.writeString(strLeague2);
-		dest.writeString(idLeague2);
-		dest.writeString(strLeague3);
-		dest.writeString(idLeague3);
-		dest.writeString(strLeague4);
-		dest.writeString(idLeague4);
-		dest.writeString(strLeague5);
-		dest.writeString(idLeague5);
-		dest.writeString(strLeague6);
-		dest.writeString(strLeague7);
-		dest.writeString(strManager);
-		dest.writeString(strStadium);
-		dest.writeString(strKeywords);
-		dest.writeString(strRSS);
-		dest.writeString(strStadiumThumb);
-		dest.writeString(strStadiumDescription);
-		dest.writeString(strStadiumLocation);
-		dest.writeString(intStadiumCapacity);
-		dest.writeString(strWebsite);
-		dest.writeString(strFacebook);
-		dest.writeString(strTwitter);
-		dest.writeString(strInstagram);
-		dest.writeString(strDescriptionEN);
-		dest.writeString(strDescriptionDE);
-		dest.writeString(strDescriptionFR);
-		dest.writeString(strDescriptionIT);
-		dest.writeString(strDescriptionJP);
-		dest.writeString(strDescriptionRU);
-		dest.writeString(strDescriptionES);
-		dest.writeString(strDescriptionPT);
-		dest.writeString(strDescriptionNO);
-		dest.writeString(strGender);
-		dest.writeString(strCountry);
-		dest.writeString(strTeamBadge);
-		dest.writeString(strTeamJersey);
-		dest.writeString(strTeamLogo);
-		dest.writeString(strTeamFanart1);
-		dest.writeString(strTeamFanart2);
-		dest.writeString(strTeamFanart3);
-		dest.writeString(strTeamFanart4);
-		dest.writeString(strTeamBanner);
-		dest.writeString(strYoutube);
-		dest.writeString(strLocked);
-	}
-
-	@Override
-	public String toString() {
-		return "DataTeamsItem{" +
-				"idTeam='" + idTeam + '\'' +
-				", idSoccerXML='" + idSoccerXML + '\'' +
-				", idAPIfootball='" + idAPIfootball + '\'' +
-				", intLoved='" + intLoved + '\'' +
-				", strTeam='" + strTeam + '\'' +
-				", strTeamShort='" + strTeamShort + '\'' +
-				", strAlternate='" + strAlternate + '\'' +
-				", intFormedYear='" + intFormedYear + '\'' +
-				", strSport='" + strSport + '\'' +
-				", strLeague='" + strLeague + '\'' +
-				", idLeague='" + idLeague + '\'' +
-				", strLeague2='" + strLeague2 + '\'' +
-				", idLeague2='" + idLeague2 + '\'' +
-				", strLeague3='" + strLeague3 + '\'' +
-				", idLeague3='" + idLeague3 + '\'' +
-				", strLeague4='" + strLeague4 + '\'' +
-				", idLeague4='" + idLeague4 + '\'' +
-				", strLeague5='" + strLeague5 + '\'' +
-				", idLeague5='" + idLeague5 + '\'' +
-				", strLeague6='" + strLeague6 + '\'' +
-				", idLeague6=" + idLeague6 +
-				", strLeague7='" + strLeague7 + '\'' +
-				", idLeague7=" + idLeague7 +
-				", strDivision=" + strDivision +
-				", strManager='" + strManager + '\'' +
-				", strStadium='" + strStadium + '\'' +
-				", strKeywords='" + strKeywords + '\'' +
-				", strRSS='" + strRSS + '\'' +
-				", strStadiumThumb='" + strStadiumThumb + '\'' +
-				", strStadiumDescription='" + strStadiumDescription + '\'' +
-				", strStadiumLocation='" + strStadiumLocation + '\'' +
-				", intStadiumCapacity='" + intStadiumCapacity + '\'' +
-				", strWebsite='" + strWebsite + '\'' +
-				", strFacebook='" + strFacebook + '\'' +
-				", strTwitter='" + strTwitter + '\'' +
-				", strInstagram='" + strInstagram + '\'' +
-				", strDescriptionEN='" + strDescriptionEN + '\'' +
-				", strDescriptionDE='" + strDescriptionDE + '\'' +
-				", strDescriptionFR='" + strDescriptionFR + '\'' +
-				", strDescriptionCN=" + strDescriptionCN +
-				", strDescriptionIT='" + strDescriptionIT + '\'' +
-				", strDescriptionJP='" + strDescriptionJP + '\'' +
-				", strDescriptionRU='" + strDescriptionRU + '\'' +
-				", strDescriptionES='" + strDescriptionES + '\'' +
-				", strDescriptionPT='" + strDescriptionPT + '\'' +
-				", strDescriptionSE=" + strDescriptionSE +
-				", strDescriptionNL=" + strDescriptionNL +
-				", strDescriptionHU=" + strDescriptionHU +
-				", strDescriptionNO='" + strDescriptionNO + '\'' +
-				", strDescriptionIL=" + strDescriptionIL +
-				", strDescriptionPL=" + strDescriptionPL +
-				", strGender='" + strGender + '\'' +
-				", strCountry='" + strCountry + '\'' +
-				", strTeamBadge='" + strTeamBadge + '\'' +
-				", strTeamJersey='" + strTeamJersey + '\'' +
-				", strTeamLogo='" + strTeamLogo + '\'' +
-				", strTeamFanart1='" + strTeamFanart1 + '\'' +
-				", strTeamFanart2='" + strTeamFanart2 + '\'' +
-				", strTeamFanart3='" + strTeamFanart3 + '\'' +
-				", strTeamFanart4='" + strTeamFanart4 + '\'' +
-				", strTeamBanner='" + strTeamBanner + '\'' +
-				", strYoutube='" + strYoutube + '\'' +
-				", strLocked='" + strLocked + '\'' +
-				'}';
 	}
 }

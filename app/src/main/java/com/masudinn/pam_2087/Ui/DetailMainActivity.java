@@ -16,21 +16,30 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.masudinn.pam_2087.Model.AllSport.DataAllSport;
 import com.masudinn.pam_2087.R;
+import com.masudinn.pam_2087.local.room.AppDatabase;
+import com.masudinn.pam_2087.local.room.dao.FavoriteDao;
+import com.masudinn.pam_2087.local.room.dao.SportDao;
+import com.masudinn.pam_2087.local.room.mapper.SportEntityMapper;
+import com.masudinn.pam_2087.local.room.models.DataFavoriteEntity;
+import com.masudinn.pam_2087.local.room.models.SportEntity;
 import com.squareup.picasso.Picasso;
 
 public class DetailMainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Context context;
+    private static final String TAG = "DetailMainActivity";
+
     private TextView tvTitle, tvCategory, tvdesc;
     private ImageView imgView;
     private DataAllSport dataAllSport;
@@ -38,11 +47,17 @@ public class DetailMainActivity extends AppCompatActivity implements View.OnClic
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "channel_01";
     private static final CharSequence CHANNEL_NAME = "mychannel";
+    private AppDatabase roomDatabase;
+    private SportDao sportDao;
+    private ImageButton imgFav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_main);
+
+        roomDatabase = AppDatabase.newInstance(getApplicationContext());
+        sportDao = roomDatabase.getSportDao();
         Gson gson = new Gson();
         dataAllSport = gson.fromJson(getIntent().getStringExtra("sport"), DataAllSport.class);
         startInit();
@@ -63,6 +78,7 @@ public class DetailMainActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initEvent() {
+        imgFav.setOnClickListener(this);
         tvTitle.setText(dataAllSport.getStrSport());
         tvCategory.setText(dataAllSport.getStrFormat());
         tvdesc.setText(dataAllSport.getStrSportDescription());
@@ -74,6 +90,7 @@ public class DetailMainActivity extends AppCompatActivity implements View.OnClic
         tvdesc = findViewById(R.id.desc_detail);
         tvCategory = findViewById(R.id.category_detail);
         imgView = findViewById(R.id.img_detail);
+        imgFav = findViewById(R.id.imgbtn_fav);
     }
 
     @SuppressLint("RestrictedApi")
@@ -124,6 +141,14 @@ public class DetailMainActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgbtn_fav:
+                SportEntity sportEntity = SportEntityMapper.toEntity(dataAllSport);
+                SportEntity favorite = sportDao.getSport(sportEntity.getIdSport());
+                if(favorite == null) {
+                    sportDao.insertFavorite(sportEntity);
+                }else {
+                    sportDao.deleteFavorite(sportEntity);
+                }
+                break;
 
         }
     }
